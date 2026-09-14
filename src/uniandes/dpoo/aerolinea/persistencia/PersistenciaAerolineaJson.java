@@ -18,9 +18,7 @@ import uniandes.dpoo.aerolinea.modelo.Avion;
 import uniandes.dpoo.aerolinea.modelo.Ruta;
 import uniandes.dpoo.aerolinea.modelo.Vuelo;
 
-/**
- * Esta clase se encarga de cargar y salvar, en archivos JSON, la información de los elementos más estables de una aerolínea: aeropuertos, aviones, rutas y vuelos.
- */
+
 public class PersistenciaAerolineaJson implements IPersistenciaAerolinea
 {
     private static final String AEROPUERTOS = "aeropuertos";
@@ -57,9 +55,7 @@ public class PersistenciaAerolineaJson implements IPersistenciaAerolinea
         cargarVuelos( aerolinea, raiz.getJSONArray( VUELOS ) );
     }
 
-    /**
-     * Carga los aeropuertos a partir de un arreglo JSON y los retorna organizados en un mapa por código, para poder construir las rutas
-     */
+   
     private Map<String, Aeropuerto> cargarAeropuertos( JSONArray jAeropuertos ) throws InformacionInconsistenteException
     {
         Map<String, Aeropuerto> aeropuertos = new HashMap<String, Aeropuerto>( );
@@ -112,9 +108,7 @@ public class PersistenciaAerolineaJson implements IPersistenciaAerolinea
         }
     }
 
-    /**
-     * Carga los vuelos reutilizando el método programarVuelo de Aerolinea, que ya valida rutas, aviones y disponibilidad
-     */
+  
     private void cargarVuelos( Aerolinea aerolinea, JSONArray jVuelos ) throws InformacionInconsistenteException
     {
         for( int i = 0; i < jVuelos.length( ); i++ )

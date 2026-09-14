@@ -64,7 +64,7 @@ public class Vuelo
         {
             int tarifa = calculadora.calcularTarifa( this, cliente );
 
-            // El constructor de Tiquete ya se encarga de agregárselo al cliente comprador
+          
             Tiquete nuevoTiquete = GeneradorTiquetes.generarTiquete( this, cliente, tarifa );
             GeneradorTiquetes.registrarTiquete( nuevoTiquete );
 

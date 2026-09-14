@@ -5,63 +5,31 @@ import java.util.Set;
 
 import uniandes.dpoo.aerolinea.exceptions.AeropuertoDuplicadoException;
 
-/**
- * Esta clase encapsula la información sobre los aeropuertos e implementa algunas operaciones relacionadas con la ubicación geográfica de los aeropuertos.
- * 
- * No puede haber dos aeropuertos con el mismo código.
- */
+
 public class Aeropuerto
 {
-    /**
-     * Esta constante representa el radio terrestre y se utiliza como parte del cálculo de distancia entre aeropuertos
-     */
+  
     private static final int RADIO_TERRESTRE = 6371;
 
-    /**
-     * En este conjunto que es un atributo de clase, se almacenan los códigos de todos los aeropuertos que existen en el sistema en un momento dado
-     */
+  
     private static Set<String> codigosUtilizados = new HashSet<String>( );
 
-    /**
-     * El nombre del aeropuerto
-     */
+ 
     private String nombre;
 
-    /**
-     * El código del aeropuerto. Debe ser único.
-     */
+  
     private String codigo;
 
-    /**
-     * El nombre de la ciudad más próxima al aereopuerto
-     */
+   
     private String nombreCiudad;
 
-    /**
-     * La latitud del aeropuerto (un valor entre -90 y +90).
-     * 
-     * Para aeropuertos localizados en el hemisferio norte, el valor debe ser positivo y para los del hemisferio sur debe ser negativo.
-     */
+  
     private double latitud;
 
-    /**
-     * La longitud del aeropuerto (un valor entre -180 y +180).
-     * 
-     * Para aeropuertos localizados en el hemisferio occidental, el valor debe ser negativo y para los del hemisferio oriental debe ser positivo.
-     */
+  
     private double longitud;
 
-    /**
-     * Construye un nuevo aeropuerto e inicializa sus atributos con los valores dados
-     * 
-     * El código del nuevo aeropuerto debe quedar almacenado en el conjunto codigosUtilizados para mostrar que ya existe un aeropuerto con ese código
-     * @param nombre
-     * @param codigo
-     * @param nombreCiudad
-     * @param latitud La latitud del aeropuerto (un valor entre -90 y +90)
-     * @param longitud La longitud del aeropuerto (un valor entre -180 y +180)
-     * @throws AeropuertoDuplicadoException Se lanza esta excepción si ya existe otro aeropuerto con el mismo código
-     */
+ 
     public Aeropuerto( String nombre, String codigo, String nombreCiudad, double latitud, double longitud ) throws AeropuertoDuplicadoException
     {
         if( codigosUtilizados.contains( codigo ) )
@@ -101,32 +69,20 @@ public class Aeropuerto
         return longitud;
     }
 
-    /**
-     * Este método calcula la distancia *aproximada* entre dos aeropuertos. Hay fórmulas más precisas pero esta es suficientemente buena para el caso de la aerolínea.
-     * 
-     * Este método asume que las coordenadas (latitud y longitud) de los aeropuertos están expresadas en la forma que las hace más cercanas. Si no es así, la distancia entre
-     * los dos aeropuertos podría ser la más larga posible.
-     * 
-     * Por ejemplo, dependiendo de cómo estén expresadas las longitudes, la distancia calculada entre Narita (Tokyo) y El Dorado (Bogotá) podría ser atravesando el Pacífico, o
-     * atravesando el Atlántico y Asia (el camino largo)
-     * 
-     * @param aeropuerto1
-     * @param aeropuerto2
-     * @return La distancia en kilómetros entre los puntos
-     */
+  
     public static int calcularDistancia( Aeropuerto aeropuerto1, Aeropuerto aeropuerto2 )
     {
-        // Convertir los ángulos a radianes para facilitar las operaciones trigonométricas
+
         double latAeropuerto1 = Math.toRadians( aeropuerto1.getLatitud( ) );
         double lonAeropuerto1 = Math.toRadians( aeropuerto1.getLongitud( ) );
         double latAeropuerto2 = Math.toRadians( aeropuerto2.getLatitud( ) );
         double lonAeropuerto2 = Math.toRadians( aeropuerto2.getLongitud( ) );
 
-        // Calcular la distancia debido a la diferencia de latitud y de longitud
+
         double deltaX = ( lonAeropuerto2 - lonAeropuerto1 ) * Math.cos( ( latAeropuerto1 + latAeropuerto2 ) / 2 );
         double deltaY = ( latAeropuerto2 - latAeropuerto1 );
 
-        // Calcular la distancia real en kilómetros
+
         double distancia = Math.sqrt( deltaX * deltaX + deltaY * deltaY ) * RADIO_TERRESTRE;
 
         return ( int )Math.round( distancia );

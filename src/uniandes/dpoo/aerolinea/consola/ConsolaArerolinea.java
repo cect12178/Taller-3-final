@@ -11,15 +11,12 @@ public class ConsolaArerolinea extends ConsolaBasica
 {
     private Aerolinea unaAerolinea;
 
-    /**
-     * Es un método que corre la aplicación y realmente no hace nada interesante: sólo muestra cómo se podría utilizar la clase Aerolínea para hacer pruebas.
-     */
     public void correrAplicacion( )
     {
         try
         {
             unaAerolinea = new Aerolinea( );
-            // String archivo = this.pedirCadenaAlUsuario( "Digite el nombre del archivo json con la información de una aerolinea" );
+        
             String archivo = "tiquetes.json"; 
             unaAerolinea.cargarTiquetes( "./datos/" + archivo, CentralPersistencia.JSON );
         }

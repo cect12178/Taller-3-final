@@ -6,16 +6,10 @@ import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.Iterator;
 
-/**
- * Esta es una clase abstracta que implementa métodos útiles para todas las consolas de la aplicación.
- */
+
 public abstract class ConsolaBasica
 {
-    /**
-     * Le pide al usuario que ingrese una cadena de caracteres
-     * @param mensaje El mensaje con el que se solicita la información
-     * @return La cadena introducida por el usuario
-     */
+
     protected String pedirCadenaAlUsuario( String mensaje )
     {
         try
@@ -32,11 +26,7 @@ public abstract class ConsolaBasica
         return "error";
     }
 
-    /**
-     * Le pide confirmación al usuario, indicándole que debe responder 'si' o 'no'.
-     * @param mensaje El mensaje con el que se solicita la información
-     * @return Retorna true únicamente si el usuario responde 'sí', 'si' o 'si', independientemente de las minúsculas y las mayúsculas. Retorna false en cualquier otro caso.
-     */
+
     protected boolean pedirConfirmacionAlUsuario( String mensaje )
     {
         try
@@ -57,11 +47,7 @@ public abstract class ConsolaBasica
         return false;
     }
 
-    /**
-     * Le pide al usuario que ingrese un número que no puede tener cifras decimales
-     * @param mensaje El mensaje con el que se solicita la información
-     * @return El valor introducido por el usuario
-     */
+
     protected int pedirEnteroAlUsuario( String mensaje )
     {
         int valorResultado = Integer.MIN_VALUE;
@@ -87,11 +73,7 @@ public abstract class ConsolaBasica
         return valorResultado;
     }
 
-    /**
-     * Le pide al usuario que ingrese un número que puede tener cifras decimales
-     * @param mensaje El mensaje con el que se solicita la información
-     * @return El valor introducido por el usuario
-     */
+ 
     protected double pedirNumeroAlUsuario( String mensaje )
     {
         double valorResultado = Integer.MIN_VALUE;
@@ -117,11 +99,7 @@ public abstract class ConsolaBasica
         return valorResultado;
     }
 
-    /**
-     * Le pide al usuario que seleccione una de las opciones que se le presenten
-     * @param coleccionOpciones
-     * @return Retorna la opción seleccionada (el valor, no su posición).
-     */
+
     protected String pedirOpcionAlUsuario( Collection<? extends Object> coleccionOpciones )
     {
         String[] opciones = new String[coleccionOpciones.size( )];
@@ -156,12 +134,7 @@ public abstract class ConsolaBasica
         }
     }
 
-    /**
-     * Muestra un menú y le pide al usuario que seleccione una opción
-     * @param nombreMenu El nombre del menu
-     * @param opciones Las opciones que se le presentan al usuario
-     * @return El número de la opción seleccionada por el usuario, contando desde 1
-     */
+
     protected int mostrarMenu( String nombreMenu, String[] opciones )
     {
         System.out.println( "\n---------------------" );
